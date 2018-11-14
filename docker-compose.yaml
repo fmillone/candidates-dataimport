@@ -1,0 +1,49 @@
+# docker-compose --compatibility up -d
+# to stop:
+# docker-compose --compatibility down
+
+version: "3.7"
+
+networks:
+  net:
+    driver: bridge
+
+services:
+  core:
+    container_name: core
+    image: palanga/candidates-core:latest # use the published image
+    networks:
+      - net
+    ports:
+      - 8080:8080
+    environment:
+      - SQL_URL=jdbc:postgresql://postgres:5432/postgres
+      - SQL_USER=postgres
+      - SQL_PASSWORD=postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 196m
+  postgres:
+    container_name: postgres
+    image: postgres
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 64m
+  ui:
+    container_name: ui
+    image: palanga/candidates-ui:latest
+    networks:
+      - net
+    ports:
+      - 3000:80
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 24m
