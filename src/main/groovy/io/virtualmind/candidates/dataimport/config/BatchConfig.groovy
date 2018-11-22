@@ -1,4 +1,4 @@
-package io.virtualmind.candidates.dataimport
+package io.virtualmind.candidates.dataimport.config
 
 import groovy.transform.CompileStatic
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing

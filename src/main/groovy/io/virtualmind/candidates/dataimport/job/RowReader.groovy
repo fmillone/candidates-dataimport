@@ -1,10 +1,11 @@
-package io.virtualmind.candidates.dataimport
+package io.virtualmind.candidates.dataimport.job
 
+import groovy.transform.CompileStatic
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.Sheet
 import org.springframework.batch.item.ItemReader
 
-
+@CompileStatic
 class RowReader implements ItemReader<Row> {
 
     Iterator<Row> iterator
@@ -14,7 +15,7 @@ class RowReader implements ItemReader<Row> {
         skipHeadersRow()
     }
 
-    void skipHeadersRow() {
+    private void skipHeadersRow() {
         if (iterator.hasNext()) {
             iterator.next()
         }

@@ -1,10 +1,12 @@
 package io.virtualmind.candidates.dataimport.model
 
+import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
 import java.time.LocalDate
 
 @ToString(includePackage = false, includeNames = true, ignoreNulls = true)
+@CompileStatic
 class Candidate {
 
     String profile

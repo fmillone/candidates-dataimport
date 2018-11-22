@@ -1,4 +1,4 @@
-package io.virtualmind.candidates.dataimport
+package io.virtualmind.candidates.dataimport.job
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
