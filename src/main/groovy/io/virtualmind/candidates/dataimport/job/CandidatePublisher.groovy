@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 @CompileStatic
 @Slf4j
 @Component
@@ -54,6 +57,7 @@ class CandidatePublisher implements ItemWriter<Candidate> {
             ${field('email', candidate.email)}
             ${field('skill', candidate.profile)}
             ${field('residence', candidate.residence)},
+            ${dateField('lastContact', candidate.lastContact)},
             role: "candidate"
             ){id}}
         """
@@ -61,6 +65,10 @@ class CandidatePublisher implements ItemWriter<Candidate> {
 
     private static String field(String name, def value) {
         value ? "$name: \"$value\"" : ''
+    }
+
+    private static String dateField(String name, LocalDate localDate) {
+        localDate ? field(name, DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(localDate.atStartOfDay())) : ''
     }
 
     @CompileDynamic
